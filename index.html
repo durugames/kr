@@ -1,37 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DURU GAMES</title>
-<meta name="description" content="DURU GAMES (두루게임즈) is an independent mobile game studio founded in July 2026 in Seoul, Korea. Maker of SERANTUM, a space-strategy game set in one shared galaxy.">
+<meta name="theme-color" content="#07090b">
+<title>SERANTUM | DURU GAMES</title>
+<meta name="description" content="하나의 은하, 한정된 좌표. 행성을 개척하고 함대를 이끄는 모바일 우주 전략 게임 세란텀. | SERANTUM is a live mobile space-strategy game by DURU GAMES (Seoul, Korea, founded July 2026), released worldwide on Google Play and the App Store on August 18, 2026.">
 <link rel="canonical" href="https://durugames.kr/">
-<link rel="stylesheet" href="/style.css?v=20261010">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "DURU GAMES",
-  "alternateName": "두루게임즈",
+  "@type": "VideoGame",
+  "name": "SERANTUM",
+  "alternateName": "세란텀: 은하 대개척",
   "url": "https://durugames.kr/",
-  "logo": "https://durugames.kr/assets/serantum-icon.png",
-  "foundingDate": "2026-07",
-  "foundingLocation": { "@type": "Place", "name": "Seoul, Republic of Korea" },
-  "founder": { "@type": "Person", "name": "Jaesik Lim", "alternateName": "임재식" },
-  "legalName": "두루게임즈",
-  "taxID": "821-06-03347",
-  "address": { "@type": "PostalAddress", "streetAddress": "205, 303 Gonghang-daero", "addressLocality": "Gangseo-gu", "addressRegion": "Seoul", "addressCountry": "KR" },
-  "contactPoint": [ { "@type": "ContactPoint", "contactType": "business inquiries", "email": "contact@durugames.kr", "telephone": "+82-70-8098-6356" } ],
-  "sameAs": [ "https://play.google.com/store/apps/details?id=com.durugames.astradominion", "https://apps.apple.com/kr/app/id6794236876", "https://github.com/durugames" ]
+  "image": "https://durugames.kr/assets/serantum-hero.jpg",
+  "description": "A mobile space-strategy game: colonize planets, command fleets and compete for territory in one shared, persistent galaxy.",
+  "applicationCategory": "Game",
+  "genre": "Strategy",
+  "operatingSystem": "Android, iOS",
+  "datePublished": "2026-08-18",
+  "inLanguage": "ko",
+  "sameAs": ["https://play.google.com/store/apps/details?id=com.durugames.astradominion", "https://apps.apple.com/kr/app/id6794236876"],
+  "publisher": { "@type": "Organization", "name": "DURU GAMES", "alternateName": "두루게임즈", "url": "https://durugames.kr/", "foundingDate": "2026-07", "foundingLocation": { "@type": "Place", "name": "Seoul, Republic of Korea" } }
 }
 </script>
+<meta property="og:title" content="세란텀: 은하 대개척">
+<meta property="og:description" content="하나의 은하, 한정된 좌표. 먼저 발견하고 먼저 차지하세요.">
+<meta property="og:image" content="https://durugames.kr/assets/serantum-hero.jpg">
+<link rel="preload" as="image" href="/assets/serantum-hero.jpg" fetchpriority="high">
+<link rel="stylesheet" href="/style.css?v=20260812">
+<style>
+:root {
+  --ser-bg: #07090b;
+  --ser-ink: #f0f0eb;
+  --ser-dim: #8f9498;
+  --ser-line: rgba(240, 240, 235, 0.18);
+  --ser-mark: #d89a45;
+}
+
+body {
+  background-color: var(--ser-bg);
+  background-image: linear-gradient(rgba(7, 9, 11, 0.06), rgba(7, 9, 11, 0.18)), url("/assets/serantum-sections-v2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--ser-ink);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+main { padding: 0; }
+
+header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 10;
+  border: 0;
+  background: linear-gradient(#07090b, transparent);
+  backdrop-filter: none;
+}
+
+header .wrap,
+.serantum-shell {
+  width: min(100% - 48px, 1120px);
+  max-width: none;
+  margin-inline: auto;
+  padding: 0;
+}
+
+header .wrap { height: 72px; }
+.logo span, nav a:hover { color: var(--ser-mark); }
+nav a { color: rgba(240, 240, 235, 0.72); }
+nav a[aria-current="page"] { color: #fff; }
+
+.game-hero {
+  position: relative;
+  min-height: min(880px, 100svh);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.game-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 8, 0.94) 0%, rgba(5, 7, 8, 0.62) 37%, rgba(5, 7, 8, 0.06) 72%),
+    linear-gradient(0deg, var(--ser-bg) 0%, transparent 38%);
+}
+
+.game-hero__art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+}
+
+.game-hero__content { padding: 160px 0 96px; }
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--ser-mark);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.game-hero h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(3.5rem, 8.8vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.075em;
+}
+
+.game-hero__lead {
+  max-width: 520px;
+  margin: 34px 0 0;
+  color: rgba(240, 240, 235, 0.76);
+  font-size: clamp(1rem, 1.8vw, 1.14rem);
+  line-height: 1.75;
+}
+
+.game-hero__link {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 26px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ser-line);
+  color: var(--ser-ink);
+  font-size: 0.86rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.game-hero__link:hover { color: var(--ser-mark); }
+
+.store-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.store-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  border: 1px solid var(--ser-line);
+  border-radius: 999px;
+  color: var(--ser-ink);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.store-links a:hover {
+  border-color: var(--ser-mark);
+  color: var(--ser-mark);
+}
+
+.store-links svg { width: 15px; height: 15px; fill: currentColor; }
+
+.systems__contact {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 34px;
+  color: var(--ser-ink);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.systems__contact:hover { color: var(--ser-mark); }
+
+.game-hero__meta {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 34px;
+  color: rgba(240, 240, 235, 0.55);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+}
+
+.game-hero__meta span + span::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  margin: 0 18px 4px 0;
+  background: var(--ser-line);
+}
+
+.signal-strip {
+  border-block: 1px solid var(--ser-line);
+}
+
+.signal-strip .serantum-shell {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.signal {
+  min-height: 138px;
+  padding: 30px 36px;
+  border-right: 1px solid var(--ser-line);
+}
+
+.signal:first-child { padding-left: 0; }
+.signal:last-child { padding-right: 0; border-right: 0; }
+.signal b { display: block; font-size: 2.2rem; line-height: 1; letter-spacing: -0.05em; }
+.signal span { display: block; margin-top: 10px; color: var(--ser-dim); font-size: 0.8rem; }
+
+.statement {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: 64px;
+  padding: 150px 0 140px;
+}
+
+.statement h2 {
+  max-width: 790px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.06em;
+}
+
+.statement h2 em { color: var(--ser-mark); font-style: normal; }
+.statement__body { max-width: 590px; margin-top: 40px; color: var(--ser-dim); font-size: 1rem; }
+
+.chapters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--ser-line);
+}
+
+.chapter {
+  min-height: 380px;
+  padding: 42px 38px 48px;
+  border-right: 1px solid var(--ser-line);
+}
+
+.chapter:first-child { padding-left: 0; }
+.chapter:last-child { padding-right: 0; border-right: 0; }
+.chapter__number { color: var(--ser-mark); font: 600 0.75rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.12em; }
+.chapter h3 { margin: 90px 0 18px; color: var(--ser-ink); font-size: 1.55rem; letter-spacing: -0.03em; }
+.chapter p { margin: 0; color: var(--ser-dim); font-size: 0.92rem; line-height: 1.75; }
+
+.systems { padding: 150px 0; }
+.systems__head { display: flex; justify-content: space-between; gap: 32px; align-items: end; margin-bottom: 54px; }
+.systems h2 { margin: 0; padding: 0; border: 0; font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.055em; }
+.systems__head p { max-width: 390px; margin: 0; color: var(--ser-dim); }
+
+.system {
+  display: grid;
+  grid-template-columns: 80px 0.7fr 1.3fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 26px 0;
+  border-top: 1px solid var(--ser-line);
+}
+
+.system:last-child { border-bottom: 1px solid var(--ser-line); }
+.system__index { color: var(--ser-mark); font: 600 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.system h3 { margin: 0; color: var(--ser-ink); font-size: 1.05rem; }
+.system p { margin: 0; color: var(--ser-dim); font-size: 0.9rem; }
+
+footer { border-color: var(--ser-line); }
+footer .wrap { width: min(100% - 48px, 1120px); max-width: none; padding: 0; }
+footer .production-note { margin: 12px 0 0; color: var(--ser-dim); font-size: 0.72rem; }
+
+@media (max-width: 760px) {
+  header .wrap,
+  .serantum-shell,
+  footer .wrap { width: min(100% - 36px, 1120px); }
+  header .wrap { height: 64px; }
+  nav a { margin-left: 14px; }
+  nav a:nth-child(n + 3) { display: none; }
+  .game-hero { min-height: 720px; }
+  .game-hero::after { background: linear-gradient(0deg, var(--ser-bg) 2%, rgba(5, 7, 8, 0.2) 67%, rgba(5, 7, 8, 0.68) 100%); }
+  .game-hero__art { object-position: 68% center; }
+  .game-hero__content { padding: 130px 0 72px; }
+  .game-hero h1 { max-width: 520px; font-size: clamp(3.15rem, 15vw, 5.2rem); }
+  .game-hero__lead { max-width: 440px; }
+  .game-hero__meta { flex-wrap: wrap; gap: 10px 14px; }
+  .game-hero__meta span + span::before { width: 14px; margin-right: 14px; }
+  .signal-strip .serantum-shell { grid-template-columns: 1fr; }
+  .signal, .signal:first-child, .signal:last-child { min-height: auto; padding: 22px 0; border-right: 0; border-bottom: 1px solid var(--ser-line); }
+  .signal:last-child { border-bottom: 0; }
+  .signal b { font-size: 1.7rem; }
+  .statement { grid-template-columns: 1fr; gap: 28px; padding: 100px 0; }
+  .statement__body { margin-top: 26px; }
+  .chapters { grid-template-columns: 1fr; }
+  .chapter, .chapter:first-child, .chapter:last-child { min-height: auto; padding: 34px 0 40px; border-right: 0; border-bottom: 1px solid var(--ser-line); }
+  .chapter:last-child { border-bottom: 0; }
+  .chapter h3 { margin: 48px 0 14px; }
+  .systems { padding: 100px 0; }
+  .systems__head { display: block; }
+  .systems__head p { margin-top: 20px; }
+  .system { grid-template-columns: 46px 1fr; gap: 10px 16px; }
+  .system p { grid-column: 2; }
+}
+</style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <a class="logo" href="/">DURU<span>GAMES</span></a>
     <nav aria-label="Main">
-      <a href="/">Home</a>
+      <a href="/" aria-current="page">SERANTUM</a>
       <a href="/about/">About</a>
       <a href="https://play.google.com/store/apps/details?id=com.durugames.astradominion">Google Play</a>
       <a href="https://apps.apple.com/kr/app/id6794236876">App Store</a>
@@ -39,21 +334,96 @@
   </div>
 </header>
 
-<main class="wrap">
-  <div class="hero">
-    <h1>DURU <span style="color:var(--brand)">GAMES</span></h1>
-    <p>Independent mobile game studio founded in July 2026 in Seoul, Korea.</p>
-    <p style="color:var(--muted);font-size:0.95rem">은하를 두루, 재미를 두루 — 우주 전략 게임을 만듭니다. <a href="/about/">About us</a></p>
-  </div>
-
-  <div class="game-card">
-    <div class="thumb"><img src="/assets/serantum-icon.png" alt="SERANTUM icon" style="width:100%;height:100%;object-fit:cover;border-radius:15px"></div>
-    <div>
-      <h2>SERANTUM <span style="color:var(--muted);font-size:0.8em">세란텀: 은하 대개척</span></h2>
-      <p>A mobile space-strategy game: colonize planets, command fleets and compete for territory in one shared, persistent galaxy. Live on Google Play and the App Store since August 18, 2026.</p>
-      <p><a href="https://play.google.com/store/apps/details?id=com.durugames.astradominion">Google Play</a> · <a href="https://apps.apple.com/kr/app/id6794236876">App Store</a></p>
+<main>
+  <section class="game-hero" aria-labelledby="serantum-title">
+    <img class="game-hero__art" src="/assets/serantum-hero.jpg" alt="개척 행성 궤도로 진입하는 세 척의 함선" width="1915" height="821" fetchpriority="high">
+    <div class="serantum-shell game-hero__content">
+      <p class="eyebrow">SERANTUM / 은하 대개척</p>
+      <h1 id="serantum-title">은하에<br>빈자리는 없다.</h1>
+      <p class="game-hero__lead">탐사선을 보내고, 행성을 선점하고, 함대를 움직이세요. 모든 플레이어는 단 하나의 은하에서 시작합니다.</p>
+      <p class="game-hero__lead" lang="en" style="opacity:.85">SERANTUM is a mobile space-strategy game set in one shared, persistent galaxy, by DURU GAMES (Seoul, founded July 2026). Live on Google Play and the App Store since August 18, 2026.</p>
+      <!-- 스토어 아이콘: Font Awesome Free brands (CC BY 4.0) -->
+      <div class="store-links" aria-label="스토어 링크">
+        <a href="https://apps.apple.com/kr/app/id6794236876"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span>App Store</span></a>
+        <a href="https://play.google.com/store/apps/details?id=com.durugames.astradominion"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><span>Google Play</span></a>
+      </div>
+      <div class="game-hero__meta" aria-label="게임 정보">
+        <span>MOBILE STRATEGY</span>
+        <span>ONLINE GALAXY</span>
+        <span>2026.08.18 OPEN</span>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="signal-strip" aria-label="핵심 규모">
+    <div class="serantum-shell">
+      <div class="signal"><b>1</b><span>모두가 공유하는 하나의 은하</span></div>
+      <div class="signal"><b>9</b><span>채굴하고 정제하는 자원 체계</span></div>
+      <div class="signal"><b>24H</b><span>접속하지 않아도 이어지는 생산</span></div>
+    </div>
+  </section>
+
+  <section class="serantum-shell statement" aria-labelledby="statement-title">
+    <p class="eyebrow">ONE GALAXY. NO RESET.</p>
+    <div>
+      <h2 id="statement-title">처음부터 다시 시작하지 않는 은하를 만들었습니다.</h2>
+      <p class="statement__body">세란텀에서는 모든 플레이어가 하나의 은하를 공유합니다. 좋은 행성은 한정되어 있으며 먼저 발견한 항성계와 세운 전초기지는 은하의 역사가 됩니다. 누구와 경쟁하고 누구와 손잡을지는 플레이어가 결정합니다.</p>
+    </div>
+  </section>
+
+  <section class="serantum-shell chapters" aria-label="주요 플레이">
+    <article class="chapter">
+      <span class="chapter__number">01 / BUILD</span>
+      <h3>행성을 개척한다</h3>
+      <p>광산과 정제소, 조선소를 세워 생산망을 구축하세요. 생산이 이어지는 동안 다음 함대를 위한 자원이 쌓입니다.</p>
+    </article>
+    <article class="chapter">
+      <span class="chapter__number">02 / CLAIM</span>
+      <h3>새로운 항성계를 탐사한다</h3>
+      <p>탐사선을 보내 미지의 항로를 밝히고 새로운 항성계를 발견하세요. 발견한 항성계는 영토를 넓힐 새로운 거점이 됩니다.</p>
+    </article>
+    <article class="chapter">
+      <span class="chapter__number">03 / CONQUER</span>
+      <h3>함대를 지휘한다</h3>
+      <p>NPC 세력을 밀어내고 적의 보급선을 끊으세요. 혼자 감당할 수 없는 전선은 회사와 동맹이 이어받습니다.</p>
+    </article>
+  </section>
+
+  <section class="serantum-shell systems" aria-labelledby="systems-title">
+    <div class="systems__head">
+      <h2 id="systems-title">전투가 전부는 아닙니다.</h2>
+      <p>잠깐 접속해 다음 계획을 세우세요. 접속하지 않은 동안에도 생산과 연구는 계속됩니다.</p>
+    </div>
+    <div class="system">
+      <span class="system__index">01</span>
+      <h3>9가지 자원</h3>
+      <p>광물부터 공허수정까지 9가지 자원을 채굴하고 정제해 필요한 곳으로 운송합니다.</p>
+    </div>
+    <div class="system">
+      <span class="system__index">02</span>
+      <h3>영구 계정 연구</h3>
+      <p>행성을 잃어도 연구는 남습니다. 패배는 끝이 아니라 다음 개척을 위한 데이터가 됩니다.</p>
+    </div>
+    <div class="system">
+      <span class="system__index">03</span>
+      <h3>약탈과 방어</h3>
+      <p>자원창고와 보험으로 손실을 줄이고, 상대의 빈틈에는 준비한 함대로 답합니다.</p>
+    </div>
+    <div class="system">
+      <span class="system__index">04</span>
+      <h3>회사와 외교</h3>
+      <p>공동 연구, 자원 지원, 동맹 채팅. 혼자 만든 기지는 함께 만든 세력권으로 확장됩니다.</p>
+    </div>
+    <a class="systems__contact" href="mailto:contact@durugames.kr"><span>개발팀에 문의하기</span><span aria-hidden="true">↗</span></a>
+  </section>
+  <section class="serantum-shell" lang="en" aria-label="For international players" style="padding-top:0">
+    <p style="color:var(--ser-dim);font-size:0.85rem;line-height:1.6;margin:0">
+      <strong style="color:var(--ser-ink);font-weight:600">SERANTUM</strong> is a mobile space-strategy game by DURU GAMES, an independent studio founded in July 2026 in Seoul, Korea.
+      Live worldwide on <a href="https://play.google.com/store/apps/details?id=com.durugames.astradominion">Google Play</a> and the
+      <a href="https://apps.apple.com/kr/app/id6794236876">App Store</a> since August 18, 2026. One shared, persistent galaxy: claim planets, build fleets, compete or ally for territory.
+      <a href="/about/">About the studio</a>
+    </p>
+  </section>
 </main>
 
 <footer>
